@@ -4,7 +4,7 @@
    </h1>
    <home-header></home-header>
    <home-swiper></home-swiper>
-   <div>test</div>
+   <div>下面是icon图标点击。。测试</div>
   </div>
 </template>
 
