@@ -48,6 +48,9 @@ export default {
 <style lang="stylus" scoped>
   .wapper >>> .swiper-pagination-bullet-active
    background #fff !important
+  .wapper >>> .swiper-pagination-bullet
+   width 18px !important
+   height 18px !important
   .wapper
    overflow hidden
    width 100%
