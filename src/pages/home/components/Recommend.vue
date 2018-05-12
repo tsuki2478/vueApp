@@ -2,7 +2,7 @@
  <div class="commend">
    <div class="title">热门推销</div>
      <ul>
-       <li class="item border-bottom" v-for="item of recommendList" :key='item.id'>
+       <li class="item border-bottom" v-for="item of RecommendList" :key='item.id'>
          <img :src="item.imgUrl" alt="图片" class="item-img">
          <div class="item-info">
            <p class="item-title">{{item.title}}</p>
@@ -17,9 +17,12 @@
 <script>
 export default {
   name: 'Recommend',
+  props: {
+    RecommendList: Array
+  },
   data () {
     return {
-      recommendList: [{
+      List: [{
         id: '001',
         imgUrl: 'http://img.hb.aicdn.com/2b1ec65942033dcbe60305a868cbf841b4174c678b18-yG66fW',
         title: '花瓣之美',

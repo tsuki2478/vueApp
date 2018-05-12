@@ -1,6 +1,6 @@
 <template>
  <div>
-  <swiper  class="icons" :options="swiperOption">
+  <swiper  class="icons" :options="swiperOption" v-if="show">
     <swiper-slide  v-for="(page, index) of pages" :key="index" class="icons-swiper">
       <div class="icon" v-for="item of page" :key="item.id">
         <div class="icon-img">
@@ -12,7 +12,6 @@
         <p class="icon-desc">{{item.desc}}</p>
      </div>
     </swiper-slide>
-    <div class="swiper-pagination"  slot="pagination"></div>
    </swiper>
  </div>
 </template>
@@ -20,12 +19,13 @@
 <script>
 export default {
   name: 'HomeIcons',
-
+  props: {
+    IconsList: Array
+  },
   data () {
     return {
       swiperOption: {
-        pagination: '.swiper-pagination',
-        loop: true
+        autoplay: false
       },
       iconList: [{
         id: '001',
@@ -69,7 +69,7 @@ export default {
   computed: {
     pages () {
       const pages = []
-      this.iconList.forEach((item, index) => {
+      this.IconsList.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if (!pages[page]) {
           pages[page] = []
@@ -77,6 +77,9 @@ export default {
         pages[page].push(item)
       })
       return pages
+    },
+    show () {
+      return this.IconsList.length
     }
   }
 }
@@ -100,13 +103,13 @@ export default {
     flex-direction row
     flex-wrap: wrap;
     .icon
-      height 170px
+      height 140px
       width 25%
       .icon-img
       .icon-img-content
-        overflow hidden
-        width 100%
-        max-height: 1.8rem;
+       overflow: hidden;
+       max-height: 1.2rem;
+       text-align: center;
     .icon-desc
       padding-top 5px
       text-align center

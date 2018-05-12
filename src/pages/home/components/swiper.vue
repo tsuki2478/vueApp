@@ -1,15 +1,13 @@
 <template>
   <div class="wapper">
-    <swiper :options="swiperOption">
-    <!-- slides -->
-    <swiper-slide v-for='item of swiperList' :key='item.id'>
-      <img class='swiper-img' :src='item.imgUrl' />
-    </swiper-slide>
+    <swiper :options="swiperOption" v-if="show">
 
     <swiper-slide >
       <img class='swiper-img' src='../../../assets/image/1.jpg' />
     </swiper-slide>
-
+    <swiper-slide v-for='item of SwiperList' :key='item.id'>
+      <img class='swiper-img' :src='item.imgUrl' />
+    </swiper-slide>
     <div class="swiper-pagination"  slot="pagination"></div>
     <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
     <!-- <div class="swiper-button-next" slot="button-next"></div> -->
@@ -21,13 +19,16 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    SwiperList: Array
+  },
   data () {
     return {
       swiperOption: {
         pagination: '.swiper-pagination',
         loop: true
       },
-      swiperList: [{
+      List: [{
         id: '001',
         imgUrl: 'https://b-ssl.duitang.com/uploads/item/201505/10/20150510184422_sTNUF.jpeg'
       }, {
@@ -40,6 +41,11 @@ export default {
         id: '004',
         imgUrl: 'https://b-ssl.duitang.com/uploads/item/201407/27/20140727114151_tLCPM.jpeg'
       }]
+    }
+  },
+  computed: {
+    show () {
+      return this.SwiperList.length
     }
   }
 }

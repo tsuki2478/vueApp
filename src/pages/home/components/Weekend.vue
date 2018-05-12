@@ -4,7 +4,7 @@
     <ul>
       <li
         class="item border-bottom"
-        v-for="item of Weenkend"
+        v-for="item of WeekendList"
         :key="item.id"
       >
         <div class="item-img-wrapper">
@@ -22,9 +22,12 @@
 <script>
 export default {
   name: 'HomeWeekend',
+  props: {
+    WeekendList: Array
+  },
   data () {
     return {
-      Weenkend: [{
+      list: [{
         id: '001',
         imgUrl: 'http://img.hb.aicdn.com/914a0abcb94affab338bb62437fd79861fba58aa9e98-amEtz8_fw658',
         title: '花瓣之美',
