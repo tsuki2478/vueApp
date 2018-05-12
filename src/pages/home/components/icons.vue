@@ -21,7 +21,6 @@
 export default {
   name: 'HomeIcons',
 
-
   data () {
     return {
       swiperOption: {
@@ -69,14 +68,12 @@ export default {
   },
   computed: {
     pages () {
-      const pages =[]
-      this.iconList .forEach((item,index) => {
-        const page =  Math.floor(index / 8)
-        if(!pages[page]) {
-          pages[page]=[]
+      const pages = []
+      this.iconList.forEach((item, index) => {
+        const page = Math.floor(index / 8)
+        if (!pages[page]) {
+          pages[page] = []
         }
-        console.log('item:'+item)
-        console.log('index:'+index)
         pages[page].push(item)
       })
       return pages
@@ -88,6 +85,8 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl'
 @import '~@/assets/styles/mixins.styl'
+  .icons
+    margin-top: 10px
   .icons >>> .swiper-pagination-bullet-active
     background pink  !important
   .icons >>> .swiper-pagination-bullet
@@ -107,7 +106,9 @@ export default {
       .icon-img-content
         overflow hidden
         width 100%
+        max-height: 1.8rem;
     .icon-desc
+      padding-top 5px
       text-align center
       font-size 26px
       color  $bgColor
