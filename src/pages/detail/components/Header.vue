@@ -30,6 +30,9 @@ export default {
   activated () {
     window.addEventListener('scroll', this.handleScroll)
   },
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     handleScroll () {
       // 获取到页面scroll滑动值，距离顶部
