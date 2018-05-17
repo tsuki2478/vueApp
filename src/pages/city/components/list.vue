@@ -69,8 +69,7 @@ export default {
     ...mapMutations(['changeCity'])
   },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper, {
-    click: true // 一开始的点击事件被bscroll阻止了，设置这个才能点击
+    this.scroll = new Bscroll(this.$refs.wrapper, { click: true // 一开始的点击事件被bscroll阻止了，设置这个才能点击
     })
   },
   watch: {
@@ -78,7 +77,6 @@ export default {
     // 监视Alphabet点击的值， letter是传过来的。 通过点击滚动到相对应位置,如果不懂refs为什么这么写。可以打印看看
       if (this.letter) {
         const element = this.$refs[this.letter][0]
-        console.log(element)
         this.scroll.scrollToElement(element)
       }
     }

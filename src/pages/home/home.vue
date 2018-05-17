@@ -63,7 +63,6 @@ export default {
   // 当使用了keep-alive时，组件的mounted第二次是不会执行， 但是activeted会
   activated () {
     if (this.lastCity !== this.city) {
-
       this.lastCity = this.city
       this.gethomeInfo()
     }

@@ -1,7 +1,6 @@
 <template>
   <div class="wapper">
     <swiper :options="swiperOption" v-if="show">
-
     <swiper-slide >
       <img class='swiper-img' src='../../../assets/image/1.jpg' />
     </swiper-slide>
