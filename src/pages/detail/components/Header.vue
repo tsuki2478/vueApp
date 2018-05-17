@@ -43,7 +43,7 @@ export default {
         opacity = opacity > 1 ? 1 : opacity
         this.opacityStyle = { opacity }
         this.showAbs = false
-        // console.log(document.documentElement.scrollTop)
+        console.log(document.documentElement.scrollTop)
       } else {
         this.showAbs = true
       }

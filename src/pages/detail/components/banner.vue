@@ -1,16 +1,16 @@
 <template>
 <div>
   <div class="banner" @click="handleBannerClick">
-    <img class="banner-img" src='../../../assets/image/1.jpg'>
+    <img class="banner-img" :src="bannerImg">
     <div class="banner-info">
-      <div class="banner-title">二之回廊的世界:赛利卡</div>
+      <div class="banner-title">{{this.sightName}}</div>
       <div class="banner-number">
         <span class="iconfont branner-icon">&#xe60d;</span>
-      666</div>
+      {{this.gallaryImgs.length}}</div>
     </div>
   </div>
   <common-gallary
-  :imgs="imgs"
+  :imgs="gallaryImgs"
   v-show="showGallary"
   @close="handlereturnClick"></common-gallary>
 </div>
@@ -20,12 +20,14 @@
 import CommonGallary from './../../../common/gallary/gallary'
 export default {
   name: 'DetailBanner',
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
+  },
   data () {
     return {
-      showGallary: false,
-      imgs: ['http://img.hb.aicdn.com/f89608180852809ea12bf9a639f08ebd0e8a4932c37f-69hw7J_fw658',
-        'http://img.hb.aicdn.com/1b9864a67da095a588aa072a82b74c798bc5396396be-zC7o0n_fw658',
-        'http://img.hb.aicdn.com/3d1b21d0e6796666cd655d956a358c179246ae13ba33-tGDiZw_fw658' ]
+      showGallary: false
     }
   },
   components: {
