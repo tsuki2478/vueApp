@@ -11,7 +11,10 @@
       <ul>
         <li
         class="search-item border-bottom"
-        v-for="item of list" :key="item.id">
+        v-for="item of list"
+        :key="item.id"
+        @click="handleCityClick(item.name)"
+        >
           {{item.name}}
         </li>
         <li
@@ -26,6 +29,7 @@
 
 <script>
 import Bscroll from 'better-scroll'
+import { mapMutations } from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -68,7 +72,20 @@ export default {
     }
   },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.search)
+    this.scroll = new Bscroll(this.$refs.search, {
+    click: true // 一开始的点击事件被bscroll阻止了，设置这个才能点击
+    })
+  },
+  methods: {
+    handleCityClick (city) {
+      // 这里改变的的是静态，并没有任何一部操作，也不是批量。
+      // 所以可以直接用commit的派发给mutations。不经过dispatch到action
+      //  mapMutations对应快捷mutations方法，这里就用他了
+      // this.$store.dispatch('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
   }
 }
 </script>

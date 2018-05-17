@@ -2,38 +2,38 @@
   <div class="list" ref="wrapper">
     <div>
       <div class="area">
-        <div class="title border-topbottom">当前城市</div>
+      <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">深圳</div>
+            <div class="button">{{this.currentCity}}</div>
           </div>
-        </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">热门城市</div>
-        <div class="button-list">
-          <div
-          class="button-wrapper"
-          v-for="item of hot"
-          :key="item.id"
-          >
-            <div class="button">{{item.name}}</div>
-          </div>
-
-        </div>
-      </div>
+    </div>
+  <div class="area">
+    <div class="title border-topbottom">热门城市</div>
+      <div class="button-list">
       <div
-          class="area"
-          v-for="(item,key) of cities"
-          :key="key"
-          :ref="key"
-       >
-        <div class="title border-topbottom">{{key}}</div>
+        class="button-wrapper"
+        v-for="item of hot"
+        :key="item.id"
+        @click='handleCityClick(item.name)'
+      >
+      <div class="button">{{item.name}}</div>
+      </div>
+    </div>
+  </div>
+    <div
+      class="area"
+      v-for="(item,key) of cities"
+      :key="key"
+      :ref="key">
+      <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom"
+          <div
+           class="item border-bottom"
            v-for="innerItem of item"
            :key="innerItem.id"
-          >
+           @click="handleCityClick(innerItem.name)">
           {{innerItem.name}}
           </div>
         </div>
@@ -44,6 +44,7 @@
 
 <script>
 import Bscroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   props: {
@@ -51,8 +52,26 @@ export default {
     cities: Object,
     letter: String
   },
+  computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
+  },
+  methods: {
+    handleCityClick (city) {
+      // 这里改变的的是静态，并没有任何一部操作，也不是批量。
+      // 所以可以直接用commit的派发给mutations。不经过dispatch到action
+      //  mapMutations对应快捷mutations方法，这里就用他了
+      // this.$store.dispatch('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    this.scroll = new Bscroll(this.$refs.wrapper, {
+    click: true // 一开始的点击事件被bscroll阻止了，设置这个才能点击
+    })
   },
   watch: {
     letter () {
