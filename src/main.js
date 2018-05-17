@@ -11,6 +11,7 @@ import './assets/styles/iconfont.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import store from './store'
+import 'babel-polyfill'
 
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
