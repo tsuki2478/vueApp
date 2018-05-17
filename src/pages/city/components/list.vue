@@ -23,9 +23,10 @@
         </div>
       </div>
       <div
-      class="area"
-      v-for="(item,key) of cities"
-      :key="key"
+          class="area"
+          v-for="(item,key) of cities"
+          :key="key"
+          :ref="key"
        >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
@@ -47,10 +48,21 @@ export default {
   name: 'CityList',
   props: {
     hot: Array,
-    cities: Object
+    cities: Object,
+    letter: String
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper)
+  },
+  watch: {
+    letter () {
+    // 监视Alphabet点击的值， letter是传过来的。 通过点击滚动到相对应位置,如果不懂refs为什么这么写。可以打印看看
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        console.log(element)
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
