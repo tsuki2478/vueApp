@@ -89,7 +89,7 @@
 .border-topbottom::after,
 .border-rightbottom::after,
 .border-bottomleft::before {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 3px solid #eaeaea;
     transform-origin: 0 100%;
 }
 .border-left::before,
