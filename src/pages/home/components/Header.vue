@@ -39,11 +39,11 @@ export default {
   background $bgColor
   color #fff
   flex-direction: row
-.header-left
+ .header-left
   width 64px
   .bcak-icon
     font-size  40px
-.header-input
+ .header-input
   flex 1
   line-height 64px
   height 64px
@@ -52,7 +52,7 @@ export default {
   background #ffffff
   border-radius 10px
   color #ccc
-.header-right
+ .header-right
   min-width 124px
   text-align center
   color #fff
